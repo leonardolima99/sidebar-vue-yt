@@ -4,28 +4,28 @@
       <img src="../assets/vue.svg" alt="Vue logo" />
     </div>
 
-    <div class="menu-toggle-wrap">
+    <div class="menu-toggle-wrap" translate="no">
       <button class="menu-toggle" @click="ToggleMenu">
         <span class="material-icons"> keyboard_double_arrow_right </span>
       </button>
     </div>
 
-    <h3>Menu</h3>
+    <h3 translate="no">Menu</h3>
     <div class="menu">
       <router-link class="menu__button" to="/">
-        <span class="material-icons">home</span>
+        <span class="material-icons" translate="no">home</span>
         <span class="button__text">Home</span>
       </router-link>
       <router-link class="menu__button" to="/about">
-        <span class="material-icons">description</span>
+        <span class="material-icons" translate="no">description</span>
         <span class="button__text">About</span>
       </router-link>
       <router-link class="menu__button" to="/team">
-        <span class="material-icons">group</span>
+        <span class="material-icons" translate="no">group</span>
         <span class="button__text">Team</span>
       </router-link>
       <router-link class="menu__button" to="/contact">
-        <span class="material-icons">email</span>
+        <span class="material-icons" translate="no">email</span>
         <span class="button__text">Contact</span>
       </router-link>
     </div>
@@ -34,7 +34,7 @@
 
     <div class="menu">
       <router-link class="menu__button" to="/settings">
-        <span class="material-icons">settings</span>
+        <span class="material-icons" translate="no">settings</span>
         <span class="button__text">Settings</span>
       </router-link>
     </div>
