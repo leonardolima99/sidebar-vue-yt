@@ -1,6 +1,6 @@
 <template>
-  <aside :class="`${is_expanded ? 'is_expanded' : ''}`">
-    <div class="logo">
+  <aside :class="`${expanded ? 'aside--expanded' : ''}`">
+    <div class="aside__logo">
       <img src="../assets/vue.svg" alt="Vue logo" />
     </div>
 
@@ -12,42 +12,43 @@
 
     <h3>Menu</h3>
     <div class="menu">
-      <router-link class="button" to="/">
+      <router-link class="menu__button" to="/">
         <span class="material-icons">home</span>
-        <span class="text">Home</span>
+        <span class="button__text">Home</span>
       </router-link>
-      <router-link class="button" to="/about">
+      <router-link class="menu__button" to="/about">
         <span class="material-icons">description</span>
-        <span class="text">About</span>
+        <span class="button__text">About</span>
       </router-link>
-      <router-link class="button" to="/team">
+      <router-link class="menu__button" to="/team">
         <span class="material-icons">group</span>
-        <span class="text">Team</span>
+        <span class="button__text">Team</span>
       </router-link>
-      <router-link class="button" to="/contact">
+      <router-link class="menu__button" to="/contact">
         <span class="material-icons">email</span>
-        <span class="text">Contact</span>
+        <span class="button__text">Contact</span>
       </router-link>
     </div>
 
-    <div class="flex"></div>
+    <div class="flex" />
 
     <div class="menu">
-      <router-link class="button" to="/settings">
+      <router-link class="menu__button" to="/settings">
         <span class="material-icons">settings</span>
-        <span class="text">Settings</span>
+        <span class="button__text">Settings</span>
       </router-link>
     </div>
   </aside>
+  <span class="blur" @click="ToggleMenu" v-if="expanded" />
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
+const expanded = ref(localStorage.getItem("expanded") === "true");
 const ToggleMenu = () => {
-  is_expanded.value = !is_expanded.value;
-  localStorage.setItem("is_expanded", is_expanded.value);
+  expanded.value = !expanded.value;
+  localStorage.setItem("expanded", expanded.value);
 };
 </script>
 
@@ -69,7 +70,7 @@ aside {
     flex: 1 1 0;
   }
 
-  .logo {
+  .aside__logo {
     margin-bottom: 1rem;
 
     img {
@@ -103,7 +104,7 @@ aside {
   }
 
   h3,
-  .button .text {
+  .menu__button .button__text {
     opacity: 0;
     transition: 0.3s ease-out;
   }
@@ -118,7 +119,7 @@ aside {
   .menu {
     margin: 0 -1rem;
 
-    .button {
+    .menu__button {
       display: flex;
       align-items: center;
       text-decoration: none;
@@ -132,7 +133,7 @@ aside {
         transition: 0.2s ease-out;
       }
 
-      .text {
+      .button__text {
         color: var(--light);
         transition: 0.2s ease-out;
       }
@@ -142,7 +143,7 @@ aside {
         background-color: var(--dark-alt);
 
         .material-icons,
-        .text {
+        .button__text {
           color: var(--primary);
         }
       }
@@ -153,7 +154,7 @@ aside {
     }
   }
 
-  &.is_expanded {
+  &.aside--expanded {
     width: var(--sidebar-width);
 
     .menu-toggle-wrap {
@@ -165,11 +166,11 @@ aside {
     }
 
     h3,
-    .button .text {
+    .menu__button .button__text {
       opacity: 1;
     }
 
-    .button {
+    .menu__button {
       .material-icons {
         margin-right: 1rem;
       }
@@ -179,6 +180,20 @@ aside {
   @media (max-width: 768px) {
     position: fixed;
     z-index: 99;
+  }
+}
+
+@media (max-width: 768px) {
+  .blur {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    transition: 0.8s ease-out;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
   }
 }
 </style>

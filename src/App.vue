@@ -17,7 +17,7 @@ import Sidebar from "./components/Sidebar.vue";
   --dark: #1e293b;
   --dark-alt: #334155;
   --light: #f1f5f9;
-  --sidebar-width: 300px;
+  --sidebar-width: 250px;
 }
 * {
   margin: 0;
@@ -37,6 +37,7 @@ button {
 .app {
   display: flex;
   main {
+    height: 100vh;
     flex: 1 1 0;
     padding: 2rem;
     @media (max-width: 768px) {
